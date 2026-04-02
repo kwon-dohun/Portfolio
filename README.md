@@ -27,5 +27,4 @@ It introduces who I am, the projects I have worked on, and the technologies I am
 
 ## Notes
 
-This website focuses on building a clear structure using HTML and CSS, 
-and applying basic JavaScript concepts learned in class.
+This website focuses on building a clear structure using HTML and CSS.
