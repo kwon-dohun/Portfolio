@@ -1,24 +1,37 @@
+/* ===========================
+   전역 초기화 & CSS 변수
+=========================== */
+
+/* 모든 요소의 기본 여백·패딩 제거, box-sizing을 border-box로 통일 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* 사이트 전체에서 쓰는 색상 팔레트를 변수로 정의
+   → 나중에 테마 변경 시 여기만 수정하면 됨 */
 :root {
-    --bg: #ece4d8;
-    --paper: #f6f0e7;
-    --paper-deep: #ebe2d4;
-    --ink: #26211c;
-    --sub: #62584e;
-    --line: #d5cabd;
-    --line-strong: #c6b8a8;
-    --navy: #21384d;
-    --teal: #284843;
-    --olive: #dfe4d4;
-    --rust: #a86c4f;
-    --sand: #efe5d0;
+    --bg: #ece4d8;          /* 페이지 전체 배경 (베이지) */
+    --paper: #f6f0e7;       /* 카드 배경 (밝은 크림) */
+    --paper-deep: #ebe2d4;  /* 카드 배경 어두운 버전 */
+    --ink: #26211c;         /* 기본 텍스트 (거의 검정) */
+    --sub: #62584e;         /* 서브 텍스트 (갈색 계열) */
+    --line: #d5cabd;        /* 구분선 (연한 베이지) */
+    --line-strong: #c6b8a8; /* 구분선 진한 버전 */
+    --navy: #21384d;        /* 강조 네이비 */
+    --teal: #284843;        /* 강조 틸 (청록) */
+    --olive: #dfe4d4;       /* 올리브 연두 */
+    --rust: #a86c4f;        /* 버튼 등 포인트 컬러 (러스트 브라운) */
+    --sand: #efe5d0;        /* 어두운 배경 위 밝은 텍스트 색 */
 }
 
+
+/* ===========================
+   기본 타이포그래피 & 링크
+=========================== */
+
+/* 세리프 폰트 사용, 베이지 배경, 줄간격 1.6 */
 body {
     font-family: Georgia, "Times New Roman", serif;
     background: var(--bg);
@@ -26,31 +39,53 @@ body {
     line-height: 1.6;
 }
 
+/* 링크 밑줄 제거, 색상 상속 */
 a {
     text-decoration: none;
     color: inherit;
 }
 
+/* 이미지 블록 처리 + 부모 너비 초과 방지 */
 img {
     display: block;
     max-width: 100%;
 }
 
+
+/* ===========================
+   레이아웃 컨테이너
+=========================== */
+
+/* 최대 1120px, 좌우 auto로 가운데 정렬
+   92%로 잡아서 모바일에서 좌우 여백 확보 */
 .container {
     width: min(92%, 1120px);
     margin: 0 auto;
 }
 
+
+/* ===========================
+   상단 컬러 스트립
+=========================== */
+
+/* 페이지 최상단 10px짜리 장식용 그라디언트 바 (틸 → 네이비 → 갈색) */
 .top-strip {
     height: 10px;
     background: linear-gradient(90deg, var(--teal), var(--navy), #6f5145);
 }
 
+
+/* ===========================
+   사이트 헤더 & 네비게이션
+=========================== */
+
+/* 헤더: 반투명 크림 배경 + 하단 구분선 */
 .site-header {
     background: rgba(246, 240, 231, 0.94);
     border-bottom: 1px solid var(--line-strong);
 }
 
+/* 로고 + 네비 가로 배치, 세로 중앙 정렬 */
 .nav-container {
     min-height: 84px;
     display: flex;
@@ -59,20 +94,23 @@ img {
     gap: 18px;
 }
 
+/* 로고 큰 글씨 + 자간 좁게 */
 .logo {
     font-size: 2rem;
     letter-spacing: -0.04em;
 }
 
+/* 네비 링크들 가로 flex 배치 */
 .navbar {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
+/* 네비 링크: 기본은 투명 테두리, 호버/활성 시 테두리 + 반투명 배경 */
 .navbar a {
     padding: 8px 12px;
-    border-radius: 999px;
+    border-radius: 999px;    /* 완전한 pill 모양 */
     color: var(--sub);
     border: 1px solid transparent;
     transition: 0.2s ease;
@@ -85,11 +123,22 @@ img {
     background: rgba(255, 255, 255, 0.36);
 }
 
+
+/* ===========================
+   메인 콘텐츠 영역
+=========================== */
+
+/* 상하 여백 */
 main {
     padding: 44px 0 72px;
 }
 
-/* home */
+
+/* ===========================
+   홈 히어로 섹션
+=========================== */
+
+/* 히어로: 텍스트(넓게) + 비주얼(좁게) 2열 그리드 */
 .hero {
     display: grid;
     grid-template-columns: 1.18fr 0.82fr;
@@ -98,6 +147,7 @@ main {
     margin-bottom: 22px;
 }
 
+/* 히어로 왼쪽 텍스트 박스: 진한 청록 그라디언트 배경, 둥근 모서리 */
 .hero-text {
     background: linear-gradient(135deg, #2c514b, #223d3d);
     color: var(--sand);
@@ -109,6 +159,7 @@ main {
     line-height: 1.6;
 }
 
+/* 소제목 위 작은 대문자 레이블 */
 .eyebrow {
     font-size: 0.95rem;
     margin-bottom: 14px;
@@ -117,6 +168,8 @@ main {
     opacity: 0.82;
 }
 
+/* 메인 타이틀: 반응형 clamp로 화면 크기에 따라 3~5rem 사이 자동 조절,
+   자간 좁게 줘서 임팩트 있는 느낌 */
 .hero-title {
     max-width: 7ch;
     font-size: clamp(3rem, 6vw, 5rem);
@@ -125,6 +178,7 @@ main {
     margin-bottom: 20px;
 }
 
+/* 이탤릭 인용구 스타일, 약간 투명도 적용 */
 .hero-quote {
     max-width: 26ch;
     margin-bottom: 18px;
@@ -134,6 +188,7 @@ main {
     font-style: italic;
 }
 
+/* pill 형태의 태그/뱃지 스타일 */
 .subtitle {
     display: inline-block;
     padding: 8px 16px;
@@ -143,12 +198,14 @@ main {
     background: rgba(239, 229, 208, 0.07);
 }
 
+/* 히어로 설명 텍스트: 약간 투명한 모래색 */
 .hero-desc {
     max-width: 46ch;
     font-size: 1.08rem;
     color: rgba(239, 229, 208, 0.92);
 }
 
+/* CTA 버튼 그룹: 가로 flex + 줄바꿈 허용 */
 .button-group {
     margin-top: 28px;
     display: flex;
@@ -156,6 +213,7 @@ main {
     flex-wrap: wrap;
 }
 
+/* 기본 버튼: 러스트 색상 pill 모양, 호버 시 살짝 위로 이동 */
 .btn {
     display: inline-block;
     padding: 12px 22px;
@@ -172,6 +230,7 @@ main {
     filter: brightness(0.97);
 }
 
+/* 아웃라인 버튼: 배경 없이 테두리만, 호버 시 연한 배경 */
 .btn-outline {
     background: transparent;
     color: var(--sand);
@@ -182,7 +241,13 @@ main {
     background: rgba(239, 229, 208, 0.08);
 }
 
-/* right visual */
+
+/* ===========================
+   히어로 오른쪽 비주얼 영역
+=========================== */
+
+/* 프로필 사진 + 메모 카드가 들어가는 컨테이너
+   세로 flex, 연한 베이지 그라디언트 배경 */
 .hero-visual {
     display: flex;
     flex-direction: column;
@@ -194,6 +259,7 @@ main {
     box-shadow: 0 18px 36px rgba(31, 28, 24, 0.04);
 }
 
+/* 사진 액자: 안쪽 패딩 + inset 그림자로 테두리 느낌 */
 .photo-frame {
     width: 100%;
     max-width: 290px;
@@ -204,6 +270,7 @@ main {
     box-shadow: inset 0 0 0 1px rgba(198, 184, 168, 0.45);
 }
 
+/* 프로필 이미지: 4:5 비율 유지, object-fit으로 크롭 */
 .profile-img {
     width: 100%;
     aspect-ratio: 4 / 5;
@@ -212,6 +279,7 @@ main {
     box-shadow: 0 14px 24px rgba(31, 28, 24, 0.08);
 }
 
+/* 사진 아래 메모 카드: 반투명 흰색 계열 배경 */
 .visual-note {
     width: 100%;
     max-width: 290px;
@@ -222,6 +290,7 @@ main {
     box-shadow: inset 0 0 0 1px rgba(198, 184, 168, 0.55);
 }
 
+/* 메모 카드 위 작은 레이블 */
 .note-label {
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -230,7 +299,12 @@ main {
     margin-bottom: 4px;
 }
 
-/* band */
+
+/* ===========================
+   소개 밴드 (3열 통계/키워드 바)
+=========================== */
+
+/* 3열 균등 그리드, 히어로 아래에 위치 */
 .intro-band {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -238,6 +312,7 @@ main {
     margin-bottom: 22px;
 }
 
+/* 각 항목: 중앙 정렬 + 진한 크림 배경 + inset 테두리 */
 .band-item {
     padding: 14px;
     text-align: center;
@@ -248,13 +323,19 @@ main {
     box-shadow: inset 0 0 0 1px var(--line);
 }
 
-/* cards */
+
+/* ===========================
+   About 섹션 카드 그리드
+=========================== */
+
+/* 왼쪽(넓은 텍스트 카드) + 오른쪽(좁은 강조 카드) 2열 */
 .about-grid {
     display: grid;
     grid-template-columns: 1.45fr 0.85fr;
     gap: 18px;
 }
 
+/* 공통 카드: 크림 배경, 둥근 모서리, inset 테두리 + 드롭 섀도우 */
 .card {
     background: var(--paper);
     padding: 30px;
@@ -262,6 +343,7 @@ main {
     box-shadow: inset 0 0 0 1px var(--line), 0 16px 32px rgba(31, 28, 24, 0.05);
 }
 
+/* 카드/페이지 제목 공통: 자간 좁게 */
 .card h2,
 .card h3,
 .page-title {
@@ -278,6 +360,7 @@ main {
     margin-bottom: 10px;
 }
 
+/* 카드 내 본문 텍스트는 서브 색상 */
 .card p,
 .page-description,
 .skill-list li,
@@ -285,15 +368,22 @@ main {
     color: var(--sub);
 }
 
+/* 강조 카드: 올리브 그린 계열 그라디언트 배경 */
 .accent-card {
     background: linear-gradient(135deg, #dde3d2, #e8ecdf);
 }
 
-/* common pages */
+
+/* ===========================
+   공통 페이지 (Projects, Skills 등)
+=========================== */
+
+/* 최소 높이 70vh로 콘텐츠 없어도 페이지 꽉 차 보이게 */
 .page-main {
     min-height: 70vh;
 }
 
+/* 페이지 상단 히어로 배너: 짙은 틸+네이비 그라디언트, 둥근 모서리 */
 .page-hero {
     padding: 36px;
     border-radius: 30px;
@@ -303,26 +393,31 @@ main {
     box-shadow: 0 18px 36px rgba(31, 28, 24, 0.07);
 }
 
+/* 페이지 제목 크게 */
 .page-title {
     font-size: 3rem;
     margin-bottom: 10px;
 }
 
+/* 페이지 설명 텍스트: 약간 투명하게 */
 .page-description {
     max-width: 760px;
     color: rgba(239, 229, 208, 0.88);
     font-size: 1.05rem;
 }
 
+/* 범용 그리드 컨테이너 */
 .grid {
     display: grid;
     gap: 20px;
 }
 
+/* 3열 카드 그리드 */
 .cards-grid {
     grid-template-columns: repeat(3, 1fr);
 }
 
+/* 프로젝트/스킬 카드: flex 세로 배치 */
 .project-card,
 .skill-card {
     display: flex;
@@ -330,6 +425,7 @@ main {
     gap: 10px;
 }
 
+/* 프로젝트 카드 상단 이미지 영역: 고정 높이, 둥근 모서리, 텍스트 중앙 */
 .project-image {
     height: 180px;
     border-radius: 20px;
@@ -342,18 +438,12 @@ main {
     color: #f8f2e8;
 }
 
-.project-one {
-    background: linear-gradient(135deg, #8b604d, #6c473a);
-}
+/* 프로젝트 카드 색상 테마 (각각 다른 그라디언트) */
+.project-one   { background: linear-gradient(135deg, #8b604d, #6c473a); } /* 브라운 러스트 */
+.project-two   { background: linear-gradient(135deg, #6f7f5c, #556448); } /* 올리브 그린 */
+.project-three { background: linear-gradient(135deg, #31495f, #243849); } /* 딥 네이비 */
 
-.project-two {
-    background: linear-gradient(135deg, #6f7f5c, #556448);
-}
-
-.project-three {
-    background: linear-gradient(135deg, #31495f, #243849);
-}
-
+/* 스킬 목록: 구분선으로 항목 분리, 마지막은 구분선 없음 */
 .skill-list {
     list-style: none;
 }
@@ -367,6 +457,12 @@ main {
     border-bottom: none;
 }
 
+
+/* ===========================
+   Contact 페이지
+=========================== */
+
+/* 왼쪽 좁은 정보 + 오른쪽 넓은 폼 2열 레이아웃 */
 .contact-layout {
     display: grid;
     grid-template-columns: 0.72fr 1.28fr;
@@ -374,6 +470,7 @@ main {
     align-items: start;
 }
 
+/* 폼 그룹: 라벨 + 인풋 묶음, 아래 여백 */
 .form-group {
     margin-bottom: 18px;
 }
@@ -384,6 +481,7 @@ main {
     font-weight: 700;
 }
 
+/* 인풋/텍스트에어리어: 둥근 모서리, 연한 크림 배경, 포커스 시 테두리 진해짐 */
 .form-group input,
 .form-group textarea {
     width: 100%;
@@ -402,6 +500,12 @@ main {
     border-color: #a59685;
 }
 
+
+/* ===========================
+   사이트 푸터
+=========================== */
+
+/* 상단 구분선, 반투명 크림 배경, 텍스트 중앙 정렬 */
 .site-footer {
     border-top: 1px solid var(--line-strong);
     background: rgba(246, 240, 231, 0.95);
@@ -410,7 +514,13 @@ main {
     color: var(--sub);
 }
 
+
+/* ===========================
+   반응형 (태블릿 이하: 768px)
+=========================== */
+
 @media (max-width: 768px) {
+    /* 2열 그리드 전부 1열로 변환 */
     .hero,
     .about-grid,
     .contact-layout,
@@ -418,6 +528,7 @@ main {
         grid-template-columns: 1fr;
     }
 
+    /* 패딩 줄이기 */
     .hero-text,
     .hero-visual,
     .page-hero,
@@ -425,6 +536,7 @@ main {
         padding: 28px;
     }
 
+    /* 타이틀 max-width 해제 (좁은 화면에서 잘리지 않게) */
     .hero-title {
         max-width: none;
     }
@@ -434,10 +546,12 @@ main {
         max-width: none;
     }
 
+    /* 페이지 타이틀 크기 축소 */
     .page-title {
         font-size: 2.4rem;
     }
 
+    /* 네비: 세로 쌓기 + 중앙 정렬 */
     .nav-container {
         flex-direction: column;
         padding: 16px 0;
@@ -447,6 +561,7 @@ main {
         justify-content: center;
     }
 
+    /* 히어로 타이틀 크기 축소 */
     .hero-title {
         font-size: 2.7rem;
     }
@@ -456,7 +571,13 @@ main {
     }
 }
 
+
+/* ===========================
+   반응형 (모바일: 480px 이하)
+=========================== */
+
 @media (max-width: 480px) {
+    /* 소개 밴드 3열 → 1열 세로 쌓기 */
     .intro-band {
         grid-template-columns: 1fr;
     }
